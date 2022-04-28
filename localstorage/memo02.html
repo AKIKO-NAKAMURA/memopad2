@@ -1,69 +1,153 @@
-<!DOCTYPE html>
+rf5d5e4r55errerr<!DOCTYPE html>
 <html lang="ja">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>myMemoPad中級</title>
+  <title>体重管理</title>
   <link rel="stylesheet" href="css/sample.css">
-</head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script> -->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  
 
-<body>
-  <header>
-    <h1>MemoPad中級編</h1>
-  </header>
+  <body onload="displayLineChart();">
+    <header>
+      <h1><img src="/img/yasero.png" alt=""></h1>
+    </header>
+    
+    <main>
+<div class="box">
+<div class="box1">
+     <P class="p1">体重入力</p>
+      <input type="text" id="input">
+</div>
+<div class="box1">
+     <P class="p1">日付</p>
+      <input type="text" id="input2">
+        <select name="" id="serect"></select>
+</div>
+</div>
 
-  <main>
-    <input type="text" id="input">
-    <textarea id="text_area"></textarea>
-    <ul>
-      <li id="save">Save</li>
-      <li id="clear">Clear</li>
-    </ul>
-  </main>
+  </textarea>
+  <ul>
+  <!-- <div class="button_line007">　ボタンを実装したい -->
+  <a href="#"><li id="save">Save</li></a>
+</div>
+   <!-- <div class="button_line007">　ボタンを実装したい -->
+    <a href="#"><li id="clear">Clear</li></a>
+  </div>
+  </ul>
+ <div class="box">
+   <!--canvasでチャートの描画をする-->
+    <canvas id="myChart" height="450" width="800"></canvas>
+  </div>
 
-  <footer>
-    <small>G's</small>
-  </footer>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script>
- // ローカルストレージ登録
-$("#save").on("click",function(){
-  const data = {
-    title:$("#input").val(),
-    text:$("#text_area").val(),
-  };
-  console.log(data);
-  const jsonData = JSON.stringify(data);
-  console.log(data);
-  localStorage.setItem("memo",jsonData);
-});
-
-
-// ローカルストレージ削除
-$("#clear").on("click",function(){
-  const jsonData = localStorage.getItem("memo")
-  const data = JSON.parse(jsonData);
-  console.log(data);
-  localStorage.removeItem("memo",jsonData);
-  $("#input").val("");
-  $("#text_area").val("");
-});
-
-
-
-// ローカルストレージ取得
-if (localStorage.getItem("memo")){
-const jsonData = localStorage.getItem("memo")
-console.log(jsonData);
-const data = JSON.parse(jsonData);
-console.log(data);
-$("#input").val(data.title);
-$("#text_area").val(data.text);
-}
-  </script>
-
+</main>
+<footer>
+  <small>G's</small>
+</footer>
 </body>
+<script src="/main.js">
+//  // ローカルストレージ登録
 
+// $("#save").on("click",function(){
+//   const data = {
+//     title:$("#input").val(),
+//     text:$("#text_area").val(),
+//   };
+//   console.log(data);
+//   const jsonData = JSON.stringify(data);
+//   console.log(data);
+//   localStorage.setItem("memo",jsonData);
+// });
+
+
+// // ローカルストレージ削除
+// $("#clear").on("click", function () {
+//   localStorage.removeItem("memo");
+//   $("#input").val("");
+//   $("#text_area").val("");
+// });
+
+// // ローカルストレージ取得
+// if (localStorage.getItem("memo")){
+// const jsonData = localStorage.getItem("memo")
+// console.log(jsonData);
+// const data = JSON.parse(jsonData);
+// console.log(data);
+// $("#input").val(data.title);
+// $("#text_area").val(data.text);
+// }
+
+//    //チャート 
+// var ctx = document.getElementById('myChart').getContext('2d');
+// var chart = new Chart(ctx, {
+//     // The type of chart we want to create
+//     type: 'line',
+
+//     // The data for our dataset
+//     data: {
+//         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+//         datasets: [{
+//             label: '体重の推移',
+//             backgroundColor: 'rgb(255, 99, 132)',
+//             borderColor: 'rgb(255, 99, 132)',
+//             data: [0, 10, 5, 2, 20, 30, 45]
+//         }]
+//     },
+
+//     // Configuration options go here
+//     options: {}
+// });
+
+
+//   //   var options = { };
+//   //   var lineChart = new Chart(ctx).Line(data, options);
+//   //   var data = {
+
+//   //       labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13,14,15,16,17,18,19,20,],
+//   //       datasets: [
+//   //           {
+//   //               label: "体重の推移",
+//   //               fillColor: "rgba(220,220,220,0.2)",
+//   //               strokeColor: "rgba(220,220,220,1)",
+//   //               pointColor: "rgba(220,220,220,1)",
+//   //               pointStrokeColor: "#fff",
+//   //               pointHighlightFill: "#fff",
+//   //               pointHighlightStroke: "rgba(220,220,220,1)",
+//   //               data: [55,55,54,54,53,52,52,51,51,50,50,49,48,47]
+//   //           },
+//   //           {
+//   //               label: "My Second dataset",
+//   //               fillColor: "rgba(151,187,205,0.2)",
+//   //               strokeColor: "rgba(151,187,205,1)",
+//   //               pointColor: "rgba(151,187,205,1)",
+//   //               pointStrokeColor: "#fff",
+//   //               pointHighlightFill: "#fff",
+//   //               pointHighlightStroke: "rgba(151,187,205,1)",
+//   //               data: ["data"]
+//   //           }
+//   //       ]
+//   //   };
+//   //     function displayLineChart() {
+//   //  var ctx = document.getElementById("lineChart").getContext("2d");
+//   // }
+
+
+
+// function startprocess(){
+//   if (localStorage.getItem("memo")){
+// const jsonData = localStorage.getItem("memo")
+// console.log(jsonData);
+// const data = JSON.parse(jsonData);
+// console.log(data);
+// $("#input").val(data.title);
+// $("#text_area").val(data.text);
+// }
+// }
+
+</script>  
 </html>
