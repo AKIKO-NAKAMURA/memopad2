@@ -1,4 +1,4 @@
-[https://akiko-nakamura.github.io/diet/]
+[https://akiko-nakamura.github.io/memopad2/]
 
 #　　ダイエットアプリ
 
